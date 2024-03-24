@@ -1,4 +1,7 @@
-# Nuxt 3 Minimal Starter
+# Notes manager
+Uses persistent pinia state to store data when the page is reloaded, cookies are chosen to support SSR, so there are small nuances when the page is reloaded, namely only very small images will remain, also consider the line length.
+
+## Nuxt 3 Minimal Starter
 
 Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
