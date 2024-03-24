@@ -1,7 +1,10 @@
 <template>
-  <div class="flex">
-    <p class="text-xl">{{ note.text }}</p>
-    <button class="button ml-20">
+  <div class="flex items-start gap-4">
+    <template v-if="isEdit">
+      <button class="button" @click="updateSaveStatus(true)">Save</button>
+      <button class="button" @click="updateSaveStatus(false)">Cancel</button>
+    </template>
+    <button v-else class="button" @click="edit">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -20,8 +23,14 @@
   </div>
 </template>
 <script setup>
-  const props = defineProps({
-    text: { type: String, required: true },
-    allowEditView: { type: Boolean, default: false },
-  });
+  const props = defineProps({ isEdit: { type: Boolean, default: false } });
+
+  const emit = defineEmits(['updateSaveStatus', 'edit']);
+
+  const edit = () => {
+    emit('edit');
+  };
+  const updateSaveStatus = (isSuccess) => {
+    emit('updateSaveStatus', isSuccess);
+  };
 </script>

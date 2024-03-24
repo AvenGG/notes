@@ -1,13 +1,8 @@
 <template>
-  <div class="">
+  <div>
     <button class="button" @click="addNewNote">Add new note</button>
     <div class="mt-10 grid grid-cols-1 gap-3 md:grid-cols-2">
-      <NoteComponent
-        v-for="note in notes"
-        :key="note.id"
-        v-bind="note"
-        @remove="removeNote"
-      />
+      <NoteComponent v-for="note in notes" :key="note.id" v-bind="note" @remove="removeNote" />
     </div>
     <ConfirmationModal ref="confirmationModalRef" title="Remove note?" />
   </div>
