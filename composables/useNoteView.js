@@ -1,6 +1,6 @@
 import { getCurrentInstance } from 'vue';
 
-export const useNoteView = (modelValue, typeClass) => {
+export const useNoteView = (modelValue, typeClass = String) => {
   const { emit } = getCurrentInstance();
 
   const isEdit = ref(false);
@@ -13,10 +13,8 @@ export const useNoteView = (modelValue, typeClass) => {
   };
   const onUpdateSaveStatus = (isSuccess) => {
     isEdit.value = false;
-    if (isSuccess) {
-      emit('update:modelValue', editValue.value);
-      editValue.value = '';
-    }
+    if (isSuccess) emit('update:modelValue', editValue.value);
+    editValue.value = typeClass();
   };
   return { isEdit, editValue, onEdit, onUpdateSaveStatus };
 };
